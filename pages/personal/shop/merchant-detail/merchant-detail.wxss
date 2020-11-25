@@ -1,0 +1,276 @@
+/* pages/personal/shop/merchant-detail/merchant-detail.wxss */
+@import "../../../../wxParse/wxParse.wxss";
+
+page {
+  background-color: #f8f8f8;
+  font-size: 28rpx;
+  width: 100%;
+  height: 100%;
+}
+
+.fw {
+  font-weight: bold;
+  font-size: 36rpx;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #ccc;
+  /* border-top: 2rpx solid #ccc; */
+}
+
+/* 资讯详情 */
+.details {
+  background-color: #fff;
+  margin-bottom: 15rpx;
+  /* position: relative; */
+  overflow-x: hidden;
+}
+
+.details .title {
+  display: block;
+  margin: 20rpx auto;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  padding: 0 20rpx;
+  /* font-weight: bold; */
+}
+
+.details .info {
+  margin: 0 0 20rpx 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.details .info view {
+  display: flex;
+  align-items: center;
+}
+
+.details .info image {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.details .info .name {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.details .info .date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+
+/* 富文本内容 */
+.details .content_text {
+  line-height: 50rpx !important;
+  padding: 0 20rpx;
+  color: #666;
+}
+
+.details .content_text image {
+  width: 100% !important;
+}
+
+.details .box image {
+  margin: 20rpx 0;
+}
+
+.details .box {
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 25rpx;
+}
+
+.details .box view {
+  display: flex;
+  align-items: center;
+}
+
+.details .icon {
+  width: 35rpx;
+  height: 35rpx;
+  margin: 0 10rpx 0 0 !important;
+}
+
+.liulancount {
+  width: 30vw;
+}
+
+
+/* 评论 */
+.comment {
+  background-color: #fff;
+}
+
+.comment .box {
+  height: 80rpx;
+  /* padding:0 20rpx; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 25rpx;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.comment .box view {
+  display: flex;
+  align-items: center;
+}
+
+.comment .box image {
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 10rpx;
+}
+
+/* .comment .comment-box{
+  padding:30rpx;
+} */
+.comment .comment-box .comment-list {
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.comment .comment-box .comment-list image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.comment .comment-box .comment-list .comment-info {
+  width: 600rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.comment .comment-box .comment-list .comment-info view {
+  height: 45rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.comment .comment-box .comment-list .comment-info .name {
+  font-size: 26rpx;
+}
+
+.comment .comment-box .comment-list .comment-info .date {
+  color: #b0b0b0;
+  font-size: 25rpx;
+}
+
+
+.choose {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 12rpx;
+  font-size: 30rpx;
+}
+
+.choose .input {
+  flex: 2;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 10rpx;
+  border: 2rpx #ccc solid;
+  border-radius: 10rpx 0 0 10rpx;
+}
+
+.choose .picker {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 10rpx;
+  border: 2rpx #ccc solid;
+  border-radius: 0 10rpx 10rpx 0;
+  background: #2a9f93;
+  color: #fff;
+}
+
+.header {
+  position: relative;
+  width: 100vw;
+  height: 56vw;
+  background-color: #ddd;
+}
+
+.header .swiper {
+  width: 100vw;
+  height: 56vw;
+}
+
+.header .swiper .slide-image {
+  width: 100vw;
+  height: 56vw;
+}
+
+.cl {
+  color: #e4393c;
+  font-size: 28rpx;
+}
+
+.cl1 {
+  color: #C2C2C2;
+  font-size: 24rpx;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+}
+
+.details .pay-box {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90rpx;
+  background-color: #fff;
+  display: flex;
+  padding: 10rpx;
+}
+
+.details .pay-box .add-box {
+  width: 50%;
+}
+
+.details .pay-box button {
+  width: 50%;
+  height: 80rpx;
+  line-height: 80rpx;
+  /* margin-top: 10vh; */
+  /* margin-bottom: 3vh; */
+  border-radius: 45rpx;
+  background: #2a9f93;
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.details .pay-box .add-box {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  padding-left: 40rpx;
+}
+
+.details .pay-box .add-box .icon {
+  width: 48rpx;
+  height: 48rpx;
+  display: block;
+  padding: 20rpx;
+}
+
+.details .pay-box .add-box .count {
+  margin: 0 10rpx 0 0;
+}

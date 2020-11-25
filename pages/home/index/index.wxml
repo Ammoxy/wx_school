@@ -1,0 +1,149 @@
+<!-- 选择学校 -->
+<view class="choose" wx:if="{{schoolList.length > 1}}">
+	<view class="area">当前学校</view>
+	<input class="input" disabled="true" placeholder="请选择孩子所在的学校" value="{{school? school : schoolList[is_school].name}}" data-id="{{schoolList[is_school].id}}"></input>
+	<picker bindchange="schoolChange" range="{{schoolList}}" range-key="name" value="{{index}}" class="picker">
+		<button>切换学校</button>
+	</picker>
+</view>
+
+<view class="modules">
+	<!-- 资讯导航条 -->
+	<view class="nav">
+		<block wx:for="{{classFication}}" wx:key="{{index}}">
+			<view class="nav-item {{index == num ? 'active' : ''}}" data-id="{{item.id}}" data-index="{{index}}" bindtap='nav'>{{item.title}}</view>
+		</block>
+		<view class="nav-item" wx:if="{{classFication.length == 0}}">暂无资讯标题</view>
+	</view>
+
+	<!-- 轮播图 && 资讯内容 -->
+	<view class="box">
+		<view class="banner">
+			<swiper class="swiper" circular="true" autoplay="true" interval="5000" duration="1000">
+				<block wx:for="{{banner}}" wx:key="{{index}}">
+					<swiper-item>
+						<image mode="aspectFill" src="{{item.href}}" class="slide-image" />
+					</swiper-item>
+				</block>
+				<block wx:if="{{banner.length == 0}}">
+					<swiper-item>
+						<image mode="aspectFill" src="/icon/no-image.png" class="slide-image" />
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+		<block wx:for="{{information}}" wx:key="{{index}}">
+			<view class="info-box" data-index="{{index}}" data-id="{{item.id}}" bindtap='openDetals'>
+				<view class="info-box-item">
+					<view class="title">
+						{{item.title}}
+					</view>
+					<view class="type">
+						{{item.type_text}}
+					</view>
+				</view>
+				<view class="info-box-item">
+					<image mode="aspectFill" src="{{item.cover}}" class="slide-image" />
+				</view>
+			</view>
+		</block>
+		<block wx:if="{{information.length == 0}}">
+			<view class="info-box">
+				<view class="info-box-item">
+					<view class="title">
+						暂无数据
+					</view>
+					<view class="type">
+						暂无数据
+					</view>
+				</view>
+				<view class="info-box-item">
+					<image mode="aspectFill" src="/icon/no-image.png" class="slide-image" />
+				</view>
+			</view>
+		</block>
+	</view>
+</view>
+
+<!-- <view class="choose-banner" wx:if="{{schoolList.length > 1}}">
+	<view class="area">当前学校</view>
+	<input class="input" disabled="true" placeholder="请选择孩子所在的学校" value="{{school? school : schoolList[is_school].name}}"></input>
+	<picker bindchange="schoolChange" range="{{schoolList}}" range-key="name" value="{{index}}" class="picker">
+		<button>切换学校</button>
+	</picker>
+</view>
+<view class="modules "> -->
+<!-- 资讯导航条 -->
+<!-- <view class="nav">
+		<block wx:for="{{classFication}}" wx:key="{{index}}">
+			<view class="nav-item {{index == num ? 'active' : ''}}" data-id="{{item.id}}" data-index="{{index}}" bindtap='nav'>{{item.title}}</view>
+		</block>
+		<view wx:if="{{classFication.length == 0}}">
+			<text>暂无资讯类型</text>
+		</view>
+	</view>
+
+	<scroll-view scroll-y>
+		<view class="box"> -->
+<!-- 轮播图 -->
+<!-- <view class="header">
+				<swiper class="swiper" circular="true" autoplay="true" interval="5000" duration="1000">
+					<block wx:for="{{banner}}" wx:key="{{index}}">
+						<swiper-item>
+							<image mode="aspectFill" src="{{item.href}}" class="slide-image" />
+						</swiper-item>
+					</block>
+					<block wx:if="{{banner.length == 0}}">
+						<swiper-item>
+							<image mode="aspectFill" src="/icon/no-image.png" class="slide-image" />
+						</swiper-item>
+					</block>
+				</swiper>
+			</view> -->
+<!-- <block wx:for="{{information}}" wx:key="{{index}}" class="activity-list">
+				<view class="info-box" data-index="{{index}}" data-id="{{item.id}}" bindtap='openDetals'>
+					<view class="info-box-item">
+						<view class="title">
+							{{item.title}}
+						</view>
+						<view class="type">
+							{{item.type_text}}
+						</view>
+					</view>
+					<view class="info-box-item">
+						<image mode="aspectFill" src="{{item.cover}}" class="slide-image" />
+					</view>
+				</view>
+			</block> -->
+
+
+<!-- 资讯分类 -->
+<!-- <view class="classification">
+			<view wx:for="{{classFication}}" wx:key="{{index}}" data-id="{{item.id}}" data-schoolid="{{item.school_id}}" bindtap='openClassification'>
+				<image mode='aspectFill' src="{{item.href}}" />
+				<text>{{item.title}}</text>
+			</view>
+			<view wx:if="{{classFication.length == 0}}">
+				<image mode="aspectFill" src="/icon/no-image.png" />
+				<text>暂无内容</text>
+			</view>
+		</view> -->
+<!-- 资讯列表 -->
+<!-- <view class="activity-box">
+			<view wx:for="{{information}}" wx:key="{{index}}" class="activity-list" data-index="{{index}}" data-id="{{item.id}}" bindtap='openDetals'>
+				<image mode="aspectFill" src="{{item.cover}}" />
+				<text class="title">{{item.title}}</text>
+				<view class="read-num">
+					<image class="icon" src="/icon/browse.png"></image>
+					<text> {{item.details_browse}}</text>
+				</view>
+			</view>
+			<view wx:if="{{information.length == 0}}" class="activity-list" >
+				<image mode="aspectFill" src="/icon/no-image.png" />
+				<text class="title">暂无内容</text>
+			</view>
+		</view> -->
+<!-- </view>
+
+
+</view> -->

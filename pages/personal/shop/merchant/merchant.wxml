@@ -1,0 +1,17 @@
+<!--pages/personal/shop/merchant/merchant.wxml-->
+<view class="v_box">
+	<view class="content">
+		<!-- <view class="title">商品列表</view> -->
+		<view class="content-item" wx:for="{{merchantList}}" data-id="{{item.id}}" data-price="{{item.reduced_price}}" bindtap="toDetail">
+			<view class="pro-img">
+				<image class="auto-img" src="{{item.img}}"></image>
+			</view>
+			<view class="pro-desc">
+				<view class="pro-name">
+					<view class="ch-name">{{item.name}}</view>
+					<view class="en-name">{{item.intro}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

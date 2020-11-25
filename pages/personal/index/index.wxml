@@ -1,0 +1,196 @@
+<!--pages/personal/index/index.wxml-->
+<view style="min-height:95vh;">
+	<view class="user-box">
+		<view class="user" wx:if="{{userInfo}}">
+			<image class="avator" src="{{userInfo.avatarUrl}}" style="border:8rpx solid #fff;"></image>
+			<text class="nickname">{{userInfo.nickname}}</text>
+		</view>
+		<view class="user" wx:else>
+			<image class="avator" src="/icon/qb.png" style="border:8rpx solid #999;"></image>
+			<button class="login-btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即登录</button>
+		</view>
+	</view>
+
+	<view class="modules">
+		<view class="box" wx:if="{{serviceList && serviceList.length > 0}}">
+			<picker bindchange="childrenChange" value="{{index}}" range-key="name" range="{{childList}}">
+				<image src="/icon/detail6.png" style="background-color: #CC9999"></image>
+			</picker>
+			<picker bindchange="childrenChange" value="{{index}}" range-key="name" range="{{childList}}">
+				<view>服务详情</view>
+			</picker>
+		</view>
+
+		<view class="box" wx:else>
+			<image src="/icon/nothing6.png" style="background-color: #CC9999"></image>
+			<view>未购买任何服务</view>
+		</view>
+
+		<view class="box hr" bindtap="toChild">
+			<image src="/icon/child6.png" style="background-color: #FF9966" />
+			<view>我的孩子</view>
+		</view>
+		<view class="box hr" bindtap="toOnly">
+			<image src="/icon/in6.png" style="background-color: #99CCCC" />
+			<view>设置只允许进校</view>
+		</view>
+	</view>
+
+	<!-- <view wx:if="{{showBuy}}">
+		<view class="prompt-box" wx:if="{{serviceList.length == 0}}">
+			<text class="not">未购买任何服务</text>
+		</view>
+
+		<view class="show-box" wx:else>
+			<picker bindchange="childrenChange" value="{{index}}" range-key="name" range="{{childList}}">
+				<view class="show-box-btu">
+					<text>查看当前已购买的服务详情</text>
+					<image src="/icon/down.png"></image>
+				</view>
+			</picker>
+		</view>
+	</view> -->
+
+	<view class="menu">
+		<view class="box" bindtap="toInfomation">
+			<image src="/icon/geren6.png" style="background-color: #FF9999"></image>
+			<view>个人信息</view>
+		</view>
+		<view class="box" wx:if="{{showBuy}}" bindtap="toBuy">
+			<image src="/icon/buy6.png" style="background-color: #FFCC99"></image>
+			<view>购买服务</view>
+		</view>
+
+		<view class="box" wx:if="{{userInfo.worker == 2 && userInfo.state == 2}}" bindtap="toManage">
+			<image src="/icon/banzhuren6.png" style="background-color: #99CC33"></image>
+			<view>班级管理</view>
+		</view>
+		<view class="box" wx:if="{{notice_childList.length > 0}}" bindtap="toNotice">
+			<image src="/icon/gonggao6.png" style="background-color: #339933"></image>
+			<view>班级公告</view>
+		</view>
+		<view class="box" bindtap="toScore">
+			<image src="/icon/chengji6.png" style="background-color: #FF6666"></image>
+			<view>成绩查询</view>
+		</view>
+		<view class="box" bindtap="toCoach">
+			<image src="/icon/study6.png" style="background-color: #FF9900"></image>
+			<view>学习辅导</view>
+		</view>
+		<view class="box" bindtap="toVisitorAudit">
+			<image src="/icon/visitor6.png" style="background-color: #99CCCC"></image>
+			<view>访客申请</view>
+		</view>
+		<view class="box" wx:if="{{userInfo.worker != 0 && userInfo.state == 2}}" bindtap="toVisitorManage">
+			<image src="/icon/visitormanage.png" style="background-color: #6699FF"></image>
+			<view>访客管理</view>
+		</view>
+		<view class="box" bindtap="toHelp">
+			<image src="/icon/help7.png" style="background-color: #339999"></image>
+			<view>帮助文档</view>
+		</view>
+		<view class="box" bindtap="toDevice">
+			<image src="/icon/shebei6.png" style="background-color: #FFCC00"></image>
+			<view>我的设备</view>
+		</view>
+		<view class="box" bindtap="toShop" wx:if="{{showFace && showShop}}">
+			<image src="/icon/shop.png" style="background-color: #CC6699"></image>
+			<view>商城</view>
+		</view>
+		<!-- <button open-type="contact">
+			<image src="/icon/shop.png" style="background-color: #CC6699" />
+			<text>商城</text>
+		</button> -->
+	</view>
+
+</view>
+
+<!-- <view class="nav">
+	<view bindtap="toInfomation">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/information.png" />
+		<text>个人信息</text>
+	</view>
+	<view bindtap="toChild">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/children.png" />
+		<text>我的孩子</text>
+	</view>
+	<view bindtap="toBuy" wx:if="{{showBuy}}">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/shoppingCart.png" />
+		<text>购买服务</text>
+	</view>
+	<view bindtap="toDevice">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/setUp.png" />
+		<text>我的设备</text>
+	</view>
+	<view bindtap="toManage" wx:if="{{userInfo.worker == 2 && userInfo.state == 2}}">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/classManagement.png" />
+		<text>班级管理</text>
+	</view>
+	<view bindtap="toNotice" wx:if="{{notice_childList.length > 0}}">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/news3.png" />
+		<text>班级公告</text>
+	</view>
+	<view bindtap="toHelp">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/file.png" />
+		<text>帮助文档</text>
+	</view>
+	<view bindtap="toVisitorAudit">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/visitor.png" />
+		<text>访客申请</text>
+	</view>
+	<view bindtap="toVisitorManage" wx:if="{{userInfo.worker != 0 && userInfo.state == 2}}">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/visitor.png" />
+		<text>访客管理</text>
+	</view>
+	<view>
+		<button open-type="contact">
+			<image src="/icon/service.png" />
+			<text>客服</text>
+		</button>
+	</view>
+	<view bindtap="toCoach">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/coach.png" />
+		<text>学习辅导</text>
+	</view>
+	<view bindtap="toScore">
+		<form>
+			<button formType="submit" class="formBtu"></button>
+		</form>
+		<image src="/icon/lookup.png" />
+		<text>成绩查询</text>
+	</view>
+</view>
+</view> -->
+
+
+<view class="supportText">图巴诺科技提供技术支持v1.0.38</view>

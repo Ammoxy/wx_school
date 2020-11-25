@@ -1,0 +1,7 @@
+<scroll-view scroll-y="true" lowe-threshold="100"  bindscrolltolower="scrollToLower" style="height: 100vh;">
+	<view class="history-box" wx:for="{{recordsList}}" wx:key="{{index}}">
+		<view class="item"><text style="color: green">{{item.name}}</text> 于 <text style="color: red">{{item.time}}</text> {{item.direction == 1 ? '进入':'离开'}} 了学校</view>
+		<image class="item-image" mode="aspectFill" src="{{item.image}}" bindtap="preview" data-image="{{item.image}}"></image>
+	</view>
+	<text wx:if="{{showFoot}}" class="foot">暂无更多数据</text>
+</scroll-view>

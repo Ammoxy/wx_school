@@ -1,0 +1,74 @@
+/* pages/personal/buy/bill/bill.wxss */
+page {
+  background-color: #f8f8f8;
+  color: #666;
+  font-size: 30rpx;
+}
+
+.bill {
+  display: flex;
+  justify-content: flex-start;
+  justify-items: center;
+  width: 100vw;
+  padding: 2vw;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.bill .goods {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  position: relative;
+}
+
+.bill .goods .name {
+  font-weight: bold;
+  padding-bottom: 30rpx;
+
+}
+
+.bill .goods .time {
+  position: absolute;
+  bottom: 0;
+}
+
+.bill .price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.bill .button {
+  color: #2a9f93;
+  border-bottom: #2a9f93 2rpx solid;
+}
+
+.bill .price .green {
+  color: #2a9f93;
+  font-weight: bold;
+  margin: 5rpx 0;
+
+}
+
+.bill .price .red {
+  color: red;
+  font-weight: bold;
+  margin: 5rpx 0;
+
+}
+
+.bill .price .gray {
+  color: gray;
+  font-weight: bold;
+  margin: 5rpx 0;
+
+}
+
+.foot {
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+  padding: 20rpx;
+}

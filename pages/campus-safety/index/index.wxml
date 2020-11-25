@@ -1,0 +1,59 @@
+<!-- 地图 -->
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" show-location="ture" bindcontroltap="controltap" markers="{{markers}}" circles="{{circles}}" bindmarkertap="markertap" show-location style="width: 100%; height: 400rpx;">
+</map>
+
+
+<!-- 孩子安全信息 -->
+<block wx:for="{{childList}}" wx:key="index">
+	<view class="box">
+		<view class="info">
+			<view class="avatar">
+				<image mode="aspectFill" src="{{item.face_image ? item.face_image : '/icon/qb.png'}}"></image>
+			</view>
+			<view class="item">
+				<view>
+					<text class="name">{{item.name}}</text>
+					<image mode="aspectFill" src="{{item.sex == 1 ? '/icon/boy.png' : '/icon/girl.png'}}"></image>
+					<text>{{item.age}}岁</text>
+				</view>
+				<view>学号：{{item.number}}</view>
+				<view wx:if="{{item.class_id}}">班级：{{item.grade}}{{item.class}}</view>
+				<view wx:else>班级：暂无录入信息</view>
+			</view>
+		</view>
+		<view class="record">
+			<view class="record-date" bindtap="calendar" data-index="{{index}}">
+				<view class="date">{{item.gregorian.year}}年{{item.gregorian.month}}月</view>
+				<view class="month">{{item.gregorian.date}}</view>
+				<view class="week">{{item.gregorian.week}}</view>
+				<view class="lunar-calendar">农历{{item.lunar[5]}}{{item.lunar[6]}}</view>
+			</view>
+			<view class="record-info">
+				<view class="history" data-value="{{item}}" bindtap='toRecord'>
+					<text>查看进出记录</text>
+				</view>
+				<view class="item">
+					<block wx:for="{{item.recordsList}}" wx:for-item="items" wx:key="{{index}}">
+						<view>{{items.name}}于 {{items.time}} {{items.direction == 1 ? '进入':'离开'}}了学校</view>
+					</block>
+					<view wx:if="{{item.recordsList.length == 0}}">暂无数据
+					</view>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{item.showCalendar}}" class="mask" bindtap='hideMask' data-index="{{index}}" data-index="{{index}}"></view>
+		<!-- 日历显示 事件 周标题显示为中文 日期单元格大小 样式 -->
+		<view class="calendar-box" wx:if="{{item.showCalendar}}">
+			<calendar binddayClick="dayClick" data-index="{{index}}" binddateChange="dateChange" bindprevMonth="prev" bindnextMonth="next" days-color="{{daysColor}}" cell-size="22" weeks-type="cn" calendar-style="calendar" header-style="hd" board-style="board" />
+		</view>
+	</view>
+</block>
+
+<view wx:if="{{childList.length == 0}}" class="not-data">暂无数据</view>
+
+<!-- 当前定位位置 -->
+<view class="loaction-box">
+	<image src="/icon/address1.png" />
+	<text>{{address}}</text>
+</view>
+<view style="height:40rpx;"></view>

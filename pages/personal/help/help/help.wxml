@@ -1,0 +1,7 @@
+<view  class="box">
+  <view wx:for="{{helpList}}" wx:key="{{index}}" data-value="{{item.id}}" bindtap='openDocument' class="list">
+    <text>{{item.title}}</text>
+    <image src="/icon/right.png"></image>
+  </view>
+</view>
+<view wx:if="{{helpList.length == 0}}" class="not-data">暂无数据~</view>

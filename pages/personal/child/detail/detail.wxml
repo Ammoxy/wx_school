@@ -1,0 +1,107 @@
+<!--pages/personal/infomation/infomation.wxml-->
+<form bindsubmit='bindChild'>
+	<view class="form">
+		<!-- 学号 -->
+		<view class="form-item">
+			<image class="left-icon" src="/icon/NO.png" />
+			<text>学号</text>
+			<view class="input">{{info.number}}</view>
+		</view>
+		<!-- 姓名 -->
+		<view class="form-item">
+			<image class="left-icon" src="/icon/name.png" />
+			<text>姓名</text>
+			<view class="input">{{info.name}}</view>
+		</view>
+		<!-- 性别 -->
+		<view class="form-item">
+			<image class="left-icon" src="/icon/sex.png" />
+			<text>性别</text>
+			<view class="input">{{info.sex == 1 ? '男' : '女'}}</view>
+		</view>
+		<!-- 年龄 -->
+		<view class="form-item">
+			<image class="left-icon" src="/icon/age.png" />
+			<text>年龄</text>
+			<view class="input">{{info.age}}岁</view>
+		</view>
+		<!-- 学校 -->
+		<view class="form-item">
+			<image class="left-icon" src="/icon/school4.png" />
+			<text>学校</text>
+			<view class="input">{{info.school}}</view>
+		</view>
+		<!-- 年级 -->
+		<view class="form-item">
+			<image class="left-icon" src="/icon/grade1.png" />
+			<text>年级</text>
+			<view class="input">{{info.grade}}</view>
+		</view>
+		<!-- 班级 -->
+		<view class="form-item">
+			<image class="left-icon" src="/icon/class.png" />
+			<text>班级</text>
+			<view class="input">{{info.class}}</view>
+		</view>
+		<!-- 只允许进校 -->
+		<!-- <view class="form-item">
+			<image class="left-icon" src="/icon/recognition.png" />
+			<text>只允许进校</text>
+			<view class="input">
+				<switch checked='{{onlyIn}}' />
+			</view>
+		</view> -->
+		<view class="form-item" style="border:none;">
+			<image class="left-icon" src="/icon/record.png" />
+			<text >备注</text>
+			<view class="input">
+			</view>
+		</view>
+		<view class="textarea-box">
+			<textarea class="textarea" name="remark" value="{{info.remark}}" placeholder="请填写您与孩子的关系，通过率更高喔~" auto-height bindblur="remarkFocus"></textarea>
+		</view>
+
+		<!-- 人脸上传 -->
+		<block wx:if="{{showFace}}">
+			<view class="form-item" style="border:none;justify-content: flex-start; ">
+				<image class="left-icon" src="/icon/recognition.png"></image>
+				<text style="width:500rpx;">学生照片(点击图片更换)</text>
+			</view>
+			<view class="portrait-box">
+				<view data-type="1" bindtap='cameraDisable'>
+					<image mode="aspectFill" src="{{info.face_image}}"></image>
+					<image class="image" wx:if="{{!info.face_image}}" mode="aspectFill" src="/icon/head.png"></image>
+				</view>
+			</view>
+		</block>
+	</view>
+
+	<view wx:if="{{info.state != 2 && info.state != 5}}">
+		<button form-type='submit'>{{info.state == 1 ? "提交审核" : "保存" }}</button>
+	</view>
+	<view wx:if="{{info.state == 2 || info.state == 5}}">
+		<button disabled='true'>审核中</button>
+	</view>
+</form>
+
+
+<!-- 相机 -->
+<camera wx:if="{{showCamera}}" device-position="{{cameraConfig.position}}" flash="{{cameraConfig.flash}}" bindstop="cameraStop" binderror="cameraError" class="cameraBox">
+	<cover-view class="viewBox">
+		<cover-view style='background-color: #fff;flex:1;'></cover-view>
+		<cover-view class="content">
+			<cover-image mode='widthFix' class="faceImg" src="/icon/face.png" />
+			<cover-view class="circle"></cover-view>
+		</cover-view>
+		<cover-view style='background-color: #fff;flex:1;'></cover-view>
+	</cover-view>
+
+	<cover-view class="cameraTab">
+		<cover-image class="tabImg" src="/icon/{{cameraConfig.flash}}.png" bindtap='flashChange'></cover-image>
+		<cover-image class="tabImg" src="/icon/switch.png" bindtap='positionChange'></cover-image>
+		<cover-view bindtap='cameraDisable'>取消</cover-view>
+	</cover-view>
+	<cover-view class="photographBtn" bindtap='takePhoto'>
+		<cover-image class="cameraImg" src="/icon/camera.png"></cover-image>
+	</cover-view>
+</camera>

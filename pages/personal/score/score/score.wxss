@@ -1,0 +1,129 @@
+.choose {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 20rpx;
+    font-size: 30rpx;
+}
+
+.choose .input {
+    flex: 2;
+    height: 70rpx;
+    line-height: 70rpx;
+    padding-left: 10rpx;
+    border: 2rpx #ccc solid;
+    border-radius: 10rpx 0 0 10rpx;
+}
+
+.choose .picker {
+    height: 70rpx;
+    line-height: 70rpx;
+    padding: 0 10rpx;
+    border: 2rpx #ccc solid;
+    border-radius: 0 10rpx 10rpx 0;
+    background: #2a9f93;
+    color: #fff;
+}
+
+
+/* 成绩详情 */
+
+.details {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #fff;
+    
+    /* transform:rotate(90deg); */
+  }
+  
+  .table {
+    position: relative;
+    border: 0px solid darkgray;
+  }
+  
+  .tr {
+    display: flex;
+    justify-content: center;
+    height: 10vh;
+    align-items: center;
+  }
+  
+  .bg-w {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: snow;
+  }
+  
+  .bg-g {
+    background: #E6F3F9;
+  }
+  
+  .bol {
+    position: absolute;
+    left: 0;
+    top: 10vh;
+    height: 90vh;
+    overflow-x: auto;
+  }
+  
+  .th {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aaa;
+    height: 10vh;
+    white-space: nowrap;
+    /*文本不换行*/
+  }
+  
+  .td {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    white-space: nowrap;
+    /*文本不换行*/
+  }
+
+  /* 显示各科成绩 */
+.position {
+    position: absolute;
+    top: 0rpx;
+    right: 0;
+    bottom: 0rpx;
+    left: 0;
+    margin: auto;
+    width: 600rpx;
+    height: 550rpx;
+    z-index: 1000;
+    background-color: #f8f8f8;
+  }
+  
+  .position .subjects {
+    position: relative;
+    height: 500rpx;
+    padding: 20rpx 30rpx;
+    border-radius: 10rpx;
+    background-color: #f8f8f8;
+  }
+  
+  .position .subjects .title {
+    /* text-align: right; */
+    color: #2a9f93
+  }
+  
+  .position .subjects .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10rpx 20rpx;
+    border-bottom: 1rpx solid #2a9f93;
+  }
+  
+  .position .subjects .close {
+    position: absolute;
+    bottom: 0rpx;
+    right: 50rpx;
+  }
+  

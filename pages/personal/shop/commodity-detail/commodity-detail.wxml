@@ -1,0 +1,39 @@
+<import src="../../../wxParse/wxParse.wxml" />
+<import src="../../../../wxParse/wxParse.wxml" />
+
+<view class="details">
+	<!-- 详情  -->
+
+	<view class="header">
+		<swiper class="swiper" circular="true" autoplay="true" interval="5000" duration="1000">
+			<block wx:for="{{banners}}" wx:key="{{index}}">
+				<swiper-item>
+					<image mode="aspectFill" src="{{item}}" class="slide-image" />
+				</swiper-item>
+			</block>
+			<swiper-item wx:if="{{banners.length == 0}}">
+				<image mode="aspectFill" src="../../../../icon/no-image.png" class="slide-image" />
+			</swiper-item>
+		</swiper>
+	</view>
+	<text class="title"><text class="cl">￥{{details.reduced_price}}</text><text class="cl1">￥{{details.total_price}}</text></text>
+	<text class="title">{{details.intro}}</text>
+	<view class="choose">
+		<input class="input" disabled="true" placeholder="请选择孩子" value="{{child}}"></input>
+		<picker bindchange="childChange" range="{{childList}}" range-key="name" value="{{index}}" class="picker">
+			<text>选择孩子</text>
+		</picker>
+	</view>
+	<view class="content_text">
+		<view class="fw">商品详情</view>
+		<template is="wxParse" data="{{wxParseData:article.nodes}}" class="content" />
+	</view>
+	<view class="pay-box">
+		<view class="add-box">
+			<image class="icon" src="../../../../icon/jian.png" bindtap="decrease"></image>
+			<text class="count">{{count}}</text>
+			<image class="icon" src="../../../../icon/add.png" bindtap="increase"></image>
+		</view>
+		<button bindtap="pay">购买</button>
+	</view>
+</view>

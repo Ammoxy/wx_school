@@ -1,0 +1,45 @@
+<scroll-view scroll-y="true" lower-threshold="100" bindscrolltolower="scrollToLower" style="height: 100vh;">
+	<view class="order-content">
+		<view class="order-item" wx:for="{{orderData}}" :key="index1">
+			<view class="item">
+				<view class="order-title clearfix">
+					<text class="fl order-no">{{item.no}}</text>
+					<text class="fr order-text clearfix">
+					<!-- <template> -->
+						<text class="fl" wx:if="{{item.status == 1}}">状态: 提交</text>
+					<text class="fl" wx:if="{{item.status == 2}}">状态: 已付款</text>
+					<text class="fl" wx:if="{{item.status == 3}}">状态: 无效</text>
+					<text class="fl" wx:if="{{item.status == 4}}">状态: 退款</text>
+					<!-- </template> -->
+					</text>
+				</view>
+				<view class="clearfix pro-item" :key="index2">
+					<view class="pro-desc fl">
+						<view class="pro-name">
+							<view class="en-name">订单号: {{item.no}}</view>
+							<view class="en-name">学生姓名: {{item.studentName}}</view>
+							<view class="en-name">商品名称: {{item.goodName}}</view>
+							<view class="en-name">商品数量: {{item.count}}</view>
+							<view class="en-name">总金额: {{item.total_money}}</view>
+							<view class="en-name">退款金额: {{item.refund_money}}</view>
+						</view>
+					</view>
+					<view class="pro-info fr">
+						<view class="pro-price">￥{{item.real_money}}</view>
+					</view>
+				</view>
+			</view>
+			<view class="item clearfix">
+				<view class="fl order-text order-time">{{item.created_at}}</view>
+				<view class="fr clearfix">
+					<text class="fl text">共计 {{item.count}} 件商品 实付：</text>
+					<text class="fl price">￥{{item.real_money}}</text>
+				</view>
+			</view>
+			<view class="item bottom-item"></view>
+		</view>
+		<view wx:if="{{showFoot}}" class="foot">
+			<text>没有更多数据了~ ╮（╯＿╰）╭</text>
+		</view>
+	</view>
+</scroll-view>

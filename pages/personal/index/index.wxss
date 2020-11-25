@@ -1,0 +1,232 @@
+/* pages/personal/index/index.wxss */
+page{
+  background-color:#f8f8f8; 
+ color:#666;
+ min-height:100vh;
+} 
+
+.user-box {
+  height: 28vh;
+  background-color: #2a9f93;
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nickname {
+  color: #FFF;
+}
+
+.avator {
+  width: 158rpx;
+  height: 158rpx;
+  margin: 20rpx;
+  border:8rpx solid #fff;
+  border-radius: 50%;
+}
+
+.login-btn {
+  font-size: 32rpx;
+  background-color:#f6f5fa;
+}
+
+.modules {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  margin-bottom: 2rpx;
+  background-color: #fff;
+  font-size: 26rpx;
+}
+
+.modules .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding: 20rpx;
+}
+
+.modules .hr {
+  border-left: 2rpx #ccc solid;
+}
+
+.modules .box image {
+  width:60rpx;
+  height:60rpx;
+  margin: 12rpx 0;
+  border-radius: 50%;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.menu .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25vw;
+  margin: 20rpx 0;
+}
+
+.menu button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25vw;
+  margin: 20rpx 0;
+}
+
+.menu button image{
+  width:50rpx;
+  height:50rpx;
+  margin: 12rpx 0;
+  padding: 10rpx;
+  border-radius: 50%;
+}
+
+
+.menu .box image {
+  width:50rpx;
+  height:50rpx;
+  margin: 12rpx 0;
+  padding: 10rpx;
+  border-radius: 50%;
+}
+
+/* 服务信息 */
+.service-box {
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+}
+
+.service-box .not {
+  text-align: center;
+  font-size: 30rpx;
+  color: red;
+}
+
+
+/* 导航列表 */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 0.5vw;
+}
+
+.nav view{
+  position: relative;/* formID按钮父元素 */
+  width:23.6vw;
+  min-width: 23.6vw;
+  height:23.6vw;
+  min-height: 23.6vw;
+  background-color:#e2fafe;
+  border-radius: 20rpx;
+  margin: 1vw 0.575vw 0 0.575vw;
+  box-shadow:-1rpx 1rpx 4rpx #ccc;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav button{
+  width:23.6vw;
+  min-width: 23.6vw;
+  height:23.6vw;
+  min-height: 23.6vw;
+  background-color:#e2fafe;
+  margin: 1vw 0.575vw 0 0.575vw;
+  border-radius: 20rpx;
+  color:#666;
+  box-shadow:-1rpx 1rpx 4rpx #ccc;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav image {
+  width:60rpx;
+  height:60rpx;
+}
+
+.nav text{
+  width:180rpx;
+  height:50rpx;
+  line-height:50rpx;
+  margin:10rpx 0 0 0;
+  font-size: 28rpx;
+  text-align: center;
+  /* background-color:red; */
+}
+
+/* 技术支持文字 */
+.supportText{
+  width:100%;
+  height:80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #aaa;
+}
+
+
+/* 购买服务提示 */
+.prompt-box{
+  height:70rpx;
+  line-height:70rpx;
+  padding:0 20rpx;
+  font-size: 28rpx;
+}
+.prompt-box .not{
+  display:block;
+  text-align: center;
+  margin:0 auto;
+  color:red;
+  font-size: 30rpx;
+}
+
+.show-box {
+  padding: 0 20rpx;
+  height: 10vh;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  margin-bottom: 15rpx;
+  font-size: 28rpx;
+}
+
+.show-box-btu {
+  height: 60rpx;
+  padding: 0 20rpx;
+  min-width: 150rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2a9f93;
+  border-radius: 10rpx;
+}
+
+.show-box-btu image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 20rpx;
+}

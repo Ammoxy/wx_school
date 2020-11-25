@@ -1,0 +1,51 @@
+<!--pages/personal/shop/shop.wxml-->
+<view class="v_box">
+	<view class="header">
+		<swiper class="swiper" circular="true" autoplay="true" interval="5000" duration="1000">
+			<block wx:for="{{banners}}" wx:key="{{index}}">
+				<swiper-item>
+					<image mode="aspectFill" src="{{item.img}}" class="slide-image" />
+				</swiper-item>
+			</block>
+			<swiper-item wx:if="{{banners.length == 0}}">
+				<image mode="aspectFill" src="../../../icon/no-image.png" class="slide-image" />
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<view class="modules">
+		<view class="box hr" bindtap="toMerchant">
+			<image src="/icon/shang.png" style="background-color: #CC9999" />
+			<view>商家列表</view>
+		</view>
+		<view class="box hr" bindtap="toOrder">
+			<image src="/icon/order.png" style="background-color: #FF9966" />
+			<view>订单列表</view>
+		</view>
+		<!-- <view class="box hr" bindtap="toOnly">
+			<image src="/icon/in6.png" style="background-color: #99CCCC" />
+			<view>设置只允许进校</view>
+		</view> -->
+	</view>
+
+	<view class="content">
+		<view class="title">商品列表</view>
+		<view class="content-item" wx:for="{{goodsList}}" data-id="{{item.id}}" data-price="{{item.reduced_price}}" bindtap="toDetail">
+			<view class="pro-img">
+				<image class="auto-img" src="{{item.img}}"></image>
+			</view>
+			<view class="pro-desc">
+				<view class="pro-name">
+					<view class="ch-name">{{item.name}}</view>
+					<view class="en-name">{{item.intro}}</view>
+				</view>
+				<view class="pro-price">
+					<view class="item cl">￥{{item.reduced_price}}</view>
+					<view class="item cl1">￥{{item.total_price}}</view>
+					<view class="item cl2">销量: {{item.sales}}</view>
+					<view class="item cl2">库存: {{item.repertory}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,69 @@
+.box {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.tip {
+    height: 9vh;
+    padding: 10rpx 0 10rpx 10rpx;
+    font-size: 28rpx;
+    border-bottom: 1rpx solid #2a9f93;
+}
+
+.box .table {
+    position: relative;
+}
+
+.box .table .th {
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 12vh;
+    left: 0;
+    background-color: #fff;
+}
+
+.box .table .th,
+.box .table .content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 8vh;
+    border-bottom: 2rpx #ccc solid;
+}
+
+
+.box .table .th .tr,
+.box .table .content .tr {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* color: #aaa; */
+    width: 30vw;
+    height: 8vh;
+    white-space: nowrap;
+}
+
+.module {
+    margin-top: 9vh;
+}
+
+.box .table .content {
+    font-size: 30rpx;
+    color: #2a9f93;
+}
+
+.box .table .content .switch {
+    transform: scale(0.8)
+}
+
+.box .table .content .button {
+    background-color: #2a9f93;
+    color: #fff;
+}
+
+.box .table .content .countdown {
+    background-color: #ccc;
+    color: #fff;
+}

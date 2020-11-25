@@ -1,0 +1,25 @@
+<import src="../../../wxParse/wxParse.wxml" />
+<import src="../../../../wxParse/wxParse.wxml" />
+
+<view class="details">
+	<!-- 详情  -->
+	<view class="header">
+		<swiper class="swiper" circular="true" autoplay="true" interval="5000" duration="1000">
+			<block wx:for="{{banners}}" wx:key="{{index}}">
+				<swiper-item>
+					<image mode="aspectFill" src="{{item}}" class="slide-image" />
+				</swiper-item>
+			</block>
+			<swiper-item wx:if="{{banners.length == 0}}">
+				<image mode="aspectFill" src="../../../../icon/no-image.png" class="slide-image" />
+			</swiper-item>
+		</swiper>
+	</view>
+	<!-- <text class="title"><text class="cl">￥{{details.reduced_price}}</text><text class="cl1">￥{{details.total_price}}</text></text> -->
+	<text class="title">{{details.intro}}</text>
+	<view class="content_text">
+		<view class="fw">商家详情</view>
+		<template is="wxParse" data="{{wxParseData:article.nodes}}" class="content" />
+	</view>
+
+</view>

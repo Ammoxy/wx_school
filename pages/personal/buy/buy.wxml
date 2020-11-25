@@ -1,0 +1,41 @@
+<view class="order">
+	<text bindtap="toBill">账单明细</text>
+	<image src="/icon/right.png"></image>
+</view>
+
+<view class="choose">
+	<input class="input" disabled="true" placeholder="请选择孩子" value="{{child}}"></input>
+	<picker bindchange="childChange" range="{{childList}}" range-key="name" value="{{index}}" class="picker">
+		<text>选择孩子</text>
+	</picker>
+</view>
+<view class="choose">
+	<input class="input" disabled="true" placeholder="请选择需要购买的商品" value="{{goodsName}}"></input>
+	<picker bindchange="goodsChange" range="{{goodsList}}" range-key="title" value="{{goods_index}}" class="picker">
+		<text>选择商品</text>
+	</picker>
+</view>
+
+<view class="goods">
+	<view class="card">
+		<view class="name">{{goodsList[goods_index].title}}</view>
+		<view class="price">￥{{goodsList[goods_index].price}}</view>
+		<view class="useday">商品有效期：{{goodsList[goods_index].time}}天</view>
+		<view class="detail">
+			<text style="width: 150rpx">包含的服务:</text>
+			<view>
+				<block wx:for="{{goodsList[goods_index].service}}" wx:key="index">
+					<text> {{item.name}} </text>
+				</block>
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+
+<view class="pay">
+	<button bindtap="pay">立即支付</button>
+	<text>开通服务，表示您同意相关服务协议。</text>
+</view>

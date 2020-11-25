@@ -1,0 +1,29 @@
+<view class="box">
+<view class="tip"><text style="font-weight: bold">温馨提示：</text><text style="color: #2a9f93;">“只允许进校”</text>按钮关闭时孩子可以自由刷脸进出校；开启<text style="color: #2a9f93;">“只允许进校”</text> 按钮后孩子不能刷脸出校，需家长点击 <text style="color: #2a9f93;">“临时出校”</text> 方可刷脸出校。</view>
+	<view class="table">
+		<view class="th">
+			<view class="tr">姓名</view>
+			<view class="tr">只允许进校</view>
+			<view class="tr">自由进出校</view>
+		</view>
+		<view class="module">
+			<block wx:for="{{childList}}" wx:key="index">
+				<view class="content">
+					<view class="tr">{{item.student.name}}</view>
+					<view class="tr">
+						<switch class="switch" color="#2a9f93" checked='{{item.onlyIn}}' data-id="{{item.student_id}}" bindchange="switchChange"></switch>
+					</view>
+					<view class="tr">
+						<block wx:if="{{item.student.only_in == 1}}">
+							<!-- <button wx:if="{{item.hideBtn}}" class="button" size="mini" data-studentid="{{item.student.id}}" data-index="{{index}}" bindtap="temporaryOut">临时出校</button> -->
+							<button class="button" size="mini" data-studentid="{{item.student.id}}" data-index="{{index}}" bindtap="temporaryOut">临时出校</button>
+
+							<!-- <button wx:else class="countdown" size="mini">{{minute}}分{{second}}秒</button> -->
+						</block>
+						<view wx:else style="color: green">允许</view>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+</view>

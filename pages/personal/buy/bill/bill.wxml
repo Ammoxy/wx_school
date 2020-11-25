@@ -1,0 +1,26 @@
+<scroll-view scroll-y="true" lower-threshold="100" bindscrolltolower="scrollToLower" style="height: 100vh;">
+
+<view class="bill" wx:for="{{recordList}}" wx:key="{{index}}">
+	<view class="goods">
+		<text class="name">商品：{{item.name}}</text>
+		<text class="time">{{item.created_at}}</text>
+	</view>
+	<view class="price">
+		<text class="{{item.status == 1 ? 'gray' : ''}}" wx:if="{{item.status == 1}}">￥{{item.price}}</text>
+		<text class="{{item.status == 2 ? 'green' : 'red'}}" wx:if="{{item.status == 2}}">￥{{item.price}}</text>
+		<text class="{{item.status == 3 ? 'red' : ' '}}"  wx:if="{{item.status == 3}}">￥{{item.price}}</text>
+		<text class="{{item.status == 4 ? 'red' : ' '}}"  wx:if="{{item.status == 4}}">￥{{item.price}}</text>
+
+		<text class="state" wx:if="{{item.status == 1}}">待付款</text>
+		<text class="button" size="mini" wx:if="{{item.status == 1}}" bindtap="resetPay" data-id="{{item.id}}">去支付</text>
+		<text class="state" wx:if="{{item.status == 2}}">已付款</text>
+		<text class="state"  wx:if="{{item.status == 3}}">已失效</text>
+		<text class="state"  wx:if="{{item.status == 4}}">退款</text>
+
+	</view>
+</view>
+<view wx:if="{{recordList.length == 0}}" class="notData">暂无账单~</view>
+<view wx:if="{{showFoot}}" class="foot">
+			<text>没有更多数据了~ ╮（╯＿╰）╭</text>
+		</view>
+</scroll-view>

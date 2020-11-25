@@ -1,0 +1,5 @@
+<view class="history-box" wx:for="{{recordsList}}" wx:key="{{index}}">
+	<view class="item"><text>{{index + 1}}</text> <text style="color: green">{{item.name}}</text> 于 <text style="color: red">{{item.time}}</text> {{item.direction == 1 ? '进入':'离开'}} 了学校</view>
+	<image class="item-image" mode="aspectFill" src="{{item.image}}" bindtap="preview" data-image="{{item.image}}"></image>
+</view>
+<text wx:if="{{recordsList.length == 0}}" class="not-data">暂无数据</text>

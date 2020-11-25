@@ -1,0 +1,21 @@
+<view class="search">
+	<input name="name" value="{{name}}" bindblur="searchName" placeholder="请输入学号或者姓名"></input>
+	<view class="image" bindtap="search">
+		<image mode="aspectFill" src="/icon/search1.png" ></image>
+	</view>
+</view>
+
+<block wx:for="{{searchList}}" wx:key="index">
+	<view class="info" data-id="{{item.id}}" bindtap="toChildInfo">
+		<image mode='aspectFill' src="/icon/qb.png"></image>
+		<view class="item">
+			<text>学校：{{item.school}}</text>
+			<text>姓名：{{item.name}}</text>
+			<text>学号：{{item.number}}</text>
+			<text wx:if="{{item.grade}}">班级：{{item.grade}} {{item.class}}</text>
+			<text wx:else>班级： 暂无班级信息</text>
+		</view>
+	</view>
+</block>
+
+<text wx:if="{{searchList && searchList.length == 0}}" class="not-data">未搜索到相关内容，请输入正确的学号或姓名</text>

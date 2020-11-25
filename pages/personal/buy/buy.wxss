@@ -1,0 +1,116 @@
+.order {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20rpx;
+    text-align: right;
+    color: #2a9f93; 
+}
+
+.order image {
+    width: 30rpx;
+    height: 30rpx;
+    margin: 0 20rpx 0 10rpx;
+  }
+
+.choose {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin: 20rpx;
+    font-size: 30rpx;
+}
+
+.choose .input {
+    flex: 2;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding-left: 10rpx;
+    border: 2rpx #ccc solid;
+    border-radius: 10rpx 0 0 10rpx;
+}
+
+.choose .picker {
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 10rpx;
+    border: 2rpx #ccc solid;
+    border-radius: 0 10rpx 10rpx 0;
+    background: #2a9f93;
+    color: #fff;
+}
+
+  /* 商品列表 */
+.goods {
+    margin: 40rpx 20rpx;
+    /* padding: 20rpx; */
+    border: 2rpx solid #2a9f93;
+    border-radius: 20rpx;
+    /* box-shadow: 0rpx 2rpx 10rpx #2a9f93; */
+    overflow-y: auto;
+}
+
+.goods .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* margin: 20rpx 0; */
+    padding: 40rpx 10rpx;
+    border: 2rpx solid #2a9f93;
+    /* border-radius: 10rpx; */
+    background: #2a9f93;
+
+}
+
+.goods .card  .name {
+    color: #fff;
+    font-size: 30rpx;
+}
+
+.goods .card  .price {
+    color: #fff;
+    font-size: 80rpx;
+}
+
+.goods .card .useday {
+    color: #f0f0f0;
+    font-size: 30rpx;
+}
+
+.goods .card .detail {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30rpx;
+    padding: 10rpx 0;
+    color: #2c3e50;
+    font-size: 28rpx;
+}
+
+.pay {
+    margin: 80rpx 20rpx;
+    text-align: right;
+}
+
+.pay text {
+    font-size: 26rpx;
+    color: #999;
+}
+
+.pay button {
+    height: 80rpx;
+    line-height: 80rpx;
+    margin-top: 10vh;
+    margin-bottom: 3vh;
+    border-radius: 20rpx;
+    background: #2a9f93;
+    color: #fff;
+    font-size: 30rpx;
+
+}
+
+
+
+
+

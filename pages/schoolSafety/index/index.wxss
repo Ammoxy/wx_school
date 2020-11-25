@@ -1,0 +1,155 @@
+.box {
+    /* height: 200rpx; */
+    position: relative;
+    margin: 20rpx;
+    padding: 20rpx;
+    box-shadow: -2rpx 2rpx 15rpx #bbb;
+    border-radius: 40rpx;
+    color: #2a9f93
+}
+
+.box .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box .info .avatar {
+    width: 250rpx;
+    text-align: center;
+}
+
+.box .info .avatar image {
+    width: 165rpx;
+    height: 165rpx;
+    border-radius: 87rpx;
+    border: 5rpx solid #bbb;
+    box-shadow: 0rpx 2rpx 15rpx #bbb;
+}
+
+.box .info .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 380rpx;
+    height: 160rpx;
+    margin: 0 0 0 20rpx;
+}
+
+.box .info .item .name {
+    font-weight: bold;
+    font-size: 30rpx;
+}
+
+.box .info .item image {
+    width: 28rpx;
+    height: 28rpx;
+    margin: 0 30rpx;
+}
+
+/* 日历 */
+.record {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20rpx;
+}
+
+.record .record-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 10rpx 40rpx;
+    border-radius: 40rpx;
+    background-color: #2a9f93;
+    color: #fff;
+    font-size: 26rpx;
+}
+
+.record .record-date .month {
+    font-size: 100rpx;
+}
+
+.record .record-info {
+    width: 380rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.record .record-info .history {
+    font-size: 30rpx;
+}
+
+.record .record-info .item {
+    width: 380rpx;
+    height: 250rpx;
+    overflow-y: auto;
+    font-size: 26rpx;
+    color: #999;
+}
+
+.record .record-info .item view {
+    padding: 10rpx 0;
+}
+
+.mask {
+    position: fixed; 
+    left:0;
+    top:0;
+    width:100vw;
+    height:100vh;
+    background-color:rgba(0,0,0,.0);
+    z-index: 99;
+}
+
+/* 日历 */
+.calendar-box {
+    position: absolute;
+    left: 30vw;
+    top: 5vh;
+    z-index: 100;
+}
+
+.calendar {
+    width: 60vw;
+    box-shadow: 0rpx 2rpx 15rpx #bbb;
+    background-color: #fff;
+    border-radius: 40rpx;
+}
+
+.hd {
+    padding-top: 20rpx;
+    font-size: 28rpx;
+    /*修改了标题文字和按钮的大小*/
+    color: #2a9f93;
+    /*修改了标题文字和按钮的颜色*/
+}
+
+.board {
+    color: #2a9f93;
+    background-color: #fff;
+}
+
+/* 当前定位位置 */
+.loaction-box{
+    width:750rpx;
+    margin:10rpx 0 0 0;
+    /* padding:auto 30rpx; */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loaction-box image{
+    width:30rpx;
+    height:30rpx;
+    margin:0 10rpx 0 0;
+  }
+  .loaction-box text{
+    max-width:650rpx;
+    /* text-align: center; */
+  }
+  
