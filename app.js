@@ -2,7 +2,7 @@
 App({
   onShow() {
     let global = require('./model/global');
-    global.switch('1.0.38').then(res => {
+    global.switch('1.0.39').then(res => {
       console.log(res);
       wx.setStorageSync('open_face', res.data.config_value)
     })

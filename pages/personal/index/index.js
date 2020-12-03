@@ -20,6 +20,7 @@ Page({
     showFace: false,
     showShop: false,
     is_shop: '',
+    is_only: '',
     scl_id: ''
   },
   onLoad: function () {
@@ -40,7 +41,7 @@ Page({
         showFace: true
       });
     }
-    console.log(111, app.globalData.is_shop);
+    console.log(111, app.globalData.is_only);
 
     if (app.globalData.is_shop == 1) {
       self.setData({
@@ -51,7 +52,7 @@ Page({
         showShop: false
       })
     }
-    
+
   },
   onShow() {
     let self = this;
@@ -108,11 +109,14 @@ Page({
                 self.setData({
                   userInfo: response.data.user
                 });
-                self.getSchool();
-                self.getChild();
-                self.getNoticeChild();
-                self.getServiceInfo();
-                self.getPersonalInfo(); // 页面刷新获取个人信息
+                wx.reLaunch({
+                  url: '/pages/home/index/index'
+                })
+                // self.getSchool();
+                // self.getChild();
+                // self.getNoticeChild();
+                // self.getServiceInfo();
+                // self.getPersonalInfo(); // 页面刷新获取个人信息
               })
             }
           })
@@ -150,8 +154,8 @@ Page({
   getSchool() {
     var self = this;
     user.school(wx.getStorageSync('token')).then(res => {
-      console.log(1,res);
-      
+      console.log(1, res);
+
       res.data.forEach(item => {
         if (item.mode == 2) {
           self.setData({
@@ -190,7 +194,7 @@ Page({
     let self = this;
     if (wx.getStorageSync('token')) {
       wx.navigateTo({
-        url: '../intoSchool/intoSchool?user_id='  +  self.data.userInfo.user_id
+        url: '../intoSchool/intoSchool?user_id=' + self.data.userInfo.user_id
       })
     } else {
       wx.showToast({

@@ -86,6 +86,7 @@ Page({
             home.schools(wx.getStorageSync('token')).then(res => {
                 app.globalData.school_id = res.data[0].id
                 app.globalData.is_shop = res.data[0].is_shop
+                app.globalData.is_only = res.data[0].is_only
                 self.setData({
                     schoolList: res.data,
                     school: res.data[0].name,
@@ -117,6 +118,7 @@ Page({
         this.getDocumentType(this.data.schoolList[e.detail.value].id);
         app.globalData.school_id = this.data.schoolList[e.detail.value].id
         app.globalData.is_shop = this.data.schoolList[e.detail.value].is_shop
+        app.globalData.is_only = this.data.schoolList[e.detail.value].is_only
     },
 
     // 轮播图
