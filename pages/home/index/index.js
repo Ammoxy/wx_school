@@ -84,9 +84,15 @@ Page({
                 icon: 'none'
             })
             home.schools(wx.getStorageSync('token')).then(res => {
+                console.log('获取学校列表', res);
+                res.data.forEach(item => {
+                    if (item.is_shop == 1) {
+                        app.globalData.is_shop = 1;
+                    }
+                });
                 app.globalData.school_id = res.data[0].id
-                app.globalData.is_shop = res.data[0].is_shop
-                app.globalData.is_only = res.data[0].is_only
+                // app.globalData.is_shop = res.data[0].is_shop
+                // app.globalData.is_only = res.data[0].is_only
                 self.setData({
                     schoolList: res.data,
                     school: res.data[0].name,
@@ -108,7 +114,7 @@ Page({
 
     schoolChange(e) {
         console.log(e);
-        
+
         this.setData({
             is_school: e.detail.value,
             school: '',
@@ -117,8 +123,8 @@ Page({
         this.getBanner(this.data.schoolList[e.detail.value].id);
         this.getDocumentType(this.data.schoolList[e.detail.value].id);
         app.globalData.school_id = this.data.schoolList[e.detail.value].id
-        app.globalData.is_shop = this.data.schoolList[e.detail.value].is_shop
-        app.globalData.is_only = this.data.schoolList[e.detail.value].is_only
+        // app.globalData.is_shop = this.data.schoolList[e.detail.value].is_shop
+        // app.globalData.is_only = this.data.schoolList[e.detail.value].is_only
     },
 
     // 轮播图

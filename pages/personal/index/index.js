@@ -41,7 +41,6 @@ Page({
         showFace: true
       });
     }
-    console.log(111, app.globalData.is_only);
 
     if (app.globalData.is_shop == 1) {
       self.setData({
@@ -64,7 +63,6 @@ Page({
         showFace: true
       });
     }
-    console.log(111, app.globalData.is_shop);
 
     if (app.globalData.is_shop == 1) {
       this.setData({
