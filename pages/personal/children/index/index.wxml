@@ -15,7 +15,7 @@
 			<view wx:else>班级：暂无录入信息</view>
 		</view>
 		<view class="handle">
-			<view class="button" wx:if="{{item.student.state == 2}}">审核中</view>
+			<view class="button" wx:if="{{item.student.state == 2 || item.student.state == 5}}">审核中</view>
 			<view class="button" wx:if="{{item.student.state == 4}}">审核不通过</view>
 
 			<!-- <view class="button" wx:if="{{item.student.state == 3 && item.student.only_in==1}}" data-studentid="{{item.student.id}}" bindtap="temporaryOut">

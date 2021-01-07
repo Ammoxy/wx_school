@@ -11,12 +11,12 @@
 				<view class="content">
 					<view class="tr">{{item.student.name}}</view>
 					<view class="tr">
-						<switch class="switch" color="#2a9f93" checked='{{item.onlyIn}}' data-id="{{item.student_id}}" bindchange="switchChange"></switch>
+						<switch class="switch" color="#2a9f93" checked='{{item.onlyIn}}' data-state="{{item.student.state}}" data-id="{{item.student_id}}" bindchange="switchChange"></switch>
 					</view>
 					<view class="tr">
 						<block wx:if="{{item.student.only_in == 1}}">
 							<!-- <button wx:if="{{item.hideBtn}}" class="button" size="mini" data-studentid="{{item.student.id}}" data-index="{{index}}" bindtap="temporaryOut">临时出校</button> -->
-							<button class="button" size="mini" data-studentid="{{item.student.id}}" data-index="{{index}}" bindtap="temporaryOut">临时出校</button>
+							<button class="button" size="mini" data-studentid="{{item.student.id}}" data-state="{{item.student.state}}" data-index="{{index}}" bindtap="temporaryOut">临时出校</button>
 
 							<!-- <button wx:else class="countdown" size="mini">{{minute}}分{{second}}秒</button> -->
 						</block>

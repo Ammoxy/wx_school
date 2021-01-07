@@ -56,68 +56,87 @@ Page({
         wx.showLoading({
             title: '设置中',
         });
-        if (e.detail.value == true) {
-            child.only(wx.getStorageSync('token'), e.currentTarget.dataset.id, 1).then(res => {
-                wx.showToast({
-                    title: '设置成功',
-                    icon: 'none',
-                    success: () => {
-                        setTimeout(() => {
-                            this.getChild();
-                        }, 2000)
-                    }
-                });
-            }).catch(err => {
-                console.log(err);
-                wx.showModal({
-                    title: '提示',
-                    content: '您未购买服务, 无法设置, 是否前往购买服务',
-                    success: (res) => {
-                        if (res.confirm) {
-                            console.log('用户点击确定')
-                            wx.navigateTo({
-                                url: '../buy/buy?user_id=' + this.data.user_id
-                            })
-                        } else if (res.cancel) {
-                            console.log('用户点击取消')
-                            this.getChild();
+        if (e.currentTarget.dataset.state == 3) {
+            if (e.detail.value == true) {
+                child.only(wx.getStorageSync('token'), e.currentTarget.dataset.id, 1).then(res => {
+                    wx.showToast({
+                        title: '设置成功',
+                        icon: 'none',
+                        success: () => {
+                            setTimeout(() => {
+                                this.getChild();
+                            }, 2000)
                         }
-                    }
-                })
-                // setTimeout(() => {
-                //     this.getChild();
-                // }, 2000)
-            })
-        } else if (e.detail.value == false) {
-            child.only(wx.getStorageSync('token'), e.currentTarget.dataset.id, 2).then(res => {
-                wx.showToast({
-                    title: '设置成功',
-                    icon: 'none',
-                    success: () => {
-                        setTimeout(() => {
-                            this.getChild();
-                        }, 2000)
-                    }
-                });
-            }).catch(err => {
-                console.log(err);
-                wx.showModal({
-                    title: '提示',
-                    content: '您未购买服务, 无法设置, 是否前往购买服务',
-                    success: (res) => {
-                        if (res.confirm) {
-                            console.log('用户点击确定')
-                            wx.navigateTo({
-                                url: '../buy/buy?user_id=' + this.data.user_id
-                            })
-                        } else if (res.cancel) {
-                            console.log('用户点击取消')
-                            this.getChild();
+                    });
+                }).catch(err => {
+                    console.log(err);
+                    wx.showModal({
+                        title: '提示',
+                        content: '您未购买服务, 无法设置, 是否前往购买服务',
+                        success: (res) => {
+                            if (res.confirm) {
+                                console.log('用户点击确定')
+                                wx.navigateTo({
+                                    url: '../buy/buy?user_id=' + this.data.user_id
+                                })
+                            } else if (res.cancel) {
+                                console.log('用户点击取消')
+                                this.getChild();
+                            }
                         }
-                    }
+                    })
+                    // setTimeout(() => {
+                    //     this.getChild();
+                    // }, 2000)
                 })
-            })
+            } else if (e.detail.value == false) {
+                child.only(wx.getStorageSync('token'), e.currentTarget.dataset.id, 2).then(res => {
+                    wx.showToast({
+                        title: '设置成功',
+                        icon: 'none',
+                        success: () => {
+                            setTimeout(() => {
+                                this.getChild();
+                            }, 2000)
+                        }
+                    });
+                }).catch(err => {
+                    console.log(err);
+                    wx.showModal({
+                        title: '提示',
+                        content: '您未购买服务, 无法设置, 是否前往购买服务',
+                        success: (res) => {
+                            if (res.confirm) {
+                                console.log('用户点击确定')
+                                wx.navigateTo({
+                                    url: '../buy/buy?user_id=' + this.data.user_id
+                                })
+                            } else if (res.cancel) {
+                                console.log('用户点击取消')
+                                this.getChild();
+                            }
+                        }
+                    })
+                })
+            }
+        } else if (e.currentTarget.dataset.state == 2) {
+            wx.showToast({
+                title: '学生未审核, 设置无效, 请先联系班主任审核',
+                icon: 'none',
+            });
+        } else if (e.currentTarget.dataset.state == 4) {
+            wx.showToast({
+                title: '学生未通过审核, 设置无效, 请重新绑定学生',
+                icon: 'none',
+            });
+        } else if (e.currentTarget.dataset.state == 5) {
+            wx.showToast({
+                title: '学生修改了人脸信息, 未审核 , 设置无效, 请先联系班主任审核',
+                icon: 'none',
+                duration: 3000
+            });
         }
+        
     },
     // 临时出校
     temporaryOut(e) {
