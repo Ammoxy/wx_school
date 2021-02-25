@@ -67,3 +67,11 @@
     background-color: #ccc;
     color: #fff;
 }
+
+.refresh {
+    text-align: center;
+    color: #ccc;
+    font-size: 24rpx;
+    /* background-color: #fff; */
+    padding: 20rpx 0;
+}

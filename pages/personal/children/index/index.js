@@ -1,4 +1,5 @@
 var child = require('../../../../model/my/child');
+var log = require('../../../../model/face/log')
 Page({
     data: {
         childList: null,
@@ -17,7 +18,7 @@ Page({
             icon: 'none'
         })
         let self = this;
-        child.list(wx.getStorageSync('token'), 2).then(res => {
+        log.listFace(wx.getStorageSync('token'), 1, 2).then(res => {
             console.log(res)
             self.setData({
                 childList: res.data
@@ -59,22 +60,26 @@ Page({
     },
     // 邀请家庭成员
     inviteMember(e) {
-        console.log(this.data.childList)
+        console.log(e)
         let self = this,
             id = e.currentTarget.dataset.id,
             index = e.currentTarget.dataset.index;
+            
         self.data.childList[index].family_state = !self.data.childList[index].family_state;
         self.setData({
             childList: this.data.childList
         })
         if (self.data.childList[index].family_state) {
             child.familyMember(wx.getStorageSync('token'), id).then(res => {
-                self.data.childList[index].invite_id = res.data;
+                console.log(res.data);
+                
+                self.data.childList[index].family = res.data;
                 self.setData({
                     childList: this.data.childList
                 });
             })
         }
+        
     },
 
     // 查看家庭成员信息

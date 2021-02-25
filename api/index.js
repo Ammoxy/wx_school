@@ -62,6 +62,12 @@ function get(url, data, cb) {
             url: '/pages/login/index?scp=1',
           });
           break;
+        case 429:
+          wx.showToast({
+            icon: "none",
+            title: res.data.msg
+          });
+          break;
         default:
           wx.hideToast();
           wx.showToast({
@@ -106,6 +112,12 @@ function post(url, data, cb) {
             url: '/pages/login/index?scp=1',
           });
           break;
+        case 429:
+          wx.showToast({
+            icon: "none",
+            title: res.data.msg
+          });
+          break;
         default:
           wx.hideToast();
           wx.showToast({
@@ -145,6 +157,12 @@ function del(url, data, cb) {
           app.globalData.userInfo = null;
           wx.navigateTo({
             url: '/pages/login/index?scp=1',
+          });
+          break;
+        case 429:
+          wx.showToast({
+            icon: "none",
+            title: res.data.msg
           });
           break;
         default:

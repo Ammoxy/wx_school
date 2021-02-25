@@ -51,7 +51,7 @@ Page({
             title: '获取数据中',
             icon: 'none'
         })
-        log.list(wx.getStorageSync('token'), 3).then(res => {
+        log.listFace(wx.getStorageSync('token'), 1, 1).then(res => {
             self.setData({
                 childList: res.data
             })

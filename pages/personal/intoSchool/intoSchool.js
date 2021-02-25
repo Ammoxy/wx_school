@@ -1,4 +1,6 @@
 var child = require('../../../model/my/child');
+let log = require('../../../model/face/log')
+
 Page({
     data: {
         childList: null,
@@ -28,18 +30,18 @@ Page({
             icon: 'none'
         })
         let self = this;
-        child.list(wx.getStorageSync('token'), 2).then(res => {
+        child.list(wx.getStorageSync('token'), 1).then(res => {
             self.setData({
                 childList: res.data
             })
             for (let i = 0; i < self.data.childList.length; i++) {
-                if (self.data.childList[i].student.only_in == 1) {
+                if (self.data.childList[i].only_in == 1) {
                     self.data.childList[i].onlyIn = true;
                     self.data.childList[i].hideBtn = true;
                     self.setData({
                         childList: self.data.childList
                     })
-                } else if (self.data.childList[i].student.only_in == 2) {
+                } else if (self.data.childList[i].only_in == 2) {
                     self.data.childList[i].onlyIn = false;
                     self.setData({
                         childList: self.data.childList
@@ -182,5 +184,17 @@ Page({
             }
         })
 
+    },
+
+    //下拉刷新
+    onPullDownRefresh: function () {
+        wx.showNavigationBarLoading() //在标题栏中显示加载
+        this.getChild();
+        //模拟加载
+        setTimeout(function () {
+            // complete
+            wx.hideNavigationBarLoading() //完成停止加载
+            wx.stopPullDownRefresh() //停止下拉刷新
+        }, 1500);
     },
 })

@@ -37,11 +37,27 @@ child.out = function (token, id) {
 }
 
 // 家庭成员
-child.familyMember = function (token, user_student) {
+// child.familyMember = function (token, user_student) {
+//     return new Promise((resolve, reject) => {
+//         api.post(api.url.Invite, {
+//             token: token,
+//             user_student: user_student
+//         }, function (response) {
+//             if (response.msg === 'ok') {
+//                 var res = response
+//                 resolve(res);
+//             } else {
+//                 reject(response);
+//             }
+//         })
+//     })
+// }
+// 家庭成员
+child.familyMember = function (token, student_id) {
     return new Promise((resolve, reject) => {
-        api.post(api.url.Invite, {
+        api.get(api.url.FamilyMember, {
             token: token,
-            user_student: user_student
+            student_id: student_id
         }, function (response) {
             if (response.msg === 'ok') {
                 var res = response

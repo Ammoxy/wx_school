@@ -1,27 +1,23 @@
 <block wx:for="{{childList}}" wx:key="index">
 	<view class="info">
-		<view class="avatar" data-id="{{item.student_id}}" bindtap="toChildInfo">
-			<image mode="aspectFill" src="{{item.student.face_image ? item.student.face_image : '/icon/qb.png'}}"></image>
+		<view class="avatar" data-id="{{item.id}}" bindtap="toChildInfo">
+			<image mode="aspectFill" src="{{item.face_image ? item.face_image : '/icon/qb.png'}}"></image>
 		</view>
-		<view class="item" data-id="{{item.student_id}}" bindtap="toChildInfo">
+		<view class="item" data-id="{{item.id}}" bindtap="toChildInfo">
 			<view>
-				<text class="name">{{item.student.name}}</text>
-				<image mode="aspectFill" src="{{item.student.sex == 1 ? '/icon/boy.png' : '/icon/girl.png'}}"></image>
-				<text>{{item.student.age}}岁</text>
+				<text class="name">{{item.name}}</text>
+				<image mode="aspectFill" src="{{item.sex == 1 ? '/icon/boy.png' : '/icon/girl.png'}}"></image>
+				<text>{{item.age}}岁</text>
 			</view>
-			<view>学校：{{item.student.school}}</view>
-			<view>学号：{{item.student.number}}</view>
-			<view wx:if="{{item.student.class_id}}">班级：{{item.student.grade}}{{item.student.class}}</view>
+			<view>学校：{{item.school}}</view>
+			<view>学号：{{item.number}}</view>
+			<view wx:if="{{item.class_id}}">班级：{{item.grade}}{{item.class}}</view>
 			<view wx:else>班级：暂无录入信息</view>
 		</view>
 		<view class="handle">
-			<view class="button" wx:if="{{item.student.state == 2 || item.student.state == 5}}">审核中</view>
-			<view class="button" wx:if="{{item.student.state == 4}}">审核不通过</view>
-
-			<!-- <view class="button" wx:if="{{item.student.state == 3 && item.student.only_in==1}}" data-studentid="{{item.student.id}}" bindtap="temporaryOut">
-				<text>临时出校</text>
-			</view> -->
-			<view class="button" wx:if="{{item.student.state == 3 && item.master==1}}" data-index="{{index}}" data-id="{{item.id}}" bindtap='inviteMember'>
+			<view class="button" wx:if="{{item.state == 2 || item.state == 5}}">审核中</view>
+			<view class="button" wx:if="{{item.state == 4}}">审核不通过</view>
+			<view class="button" wx:if="{{item.state == 3 && item.userStudents.master==1}}" data-index="{{index}}" data-id="{{item.id}}" bindtap='inviteMember'>
 				<text>家庭成员</text>
 				<image mode='aspectFill' src="{{item.family_state == true ? '/icon/up.png' : '/icon/down.png'}}"></image>
 			</view>
@@ -29,9 +25,9 @@
 	</view>
 	<!-- 邀请 -->
 	<block wx:if="{{item.family_state}}">
-		<view class="invite" wx:if="{{item.master==1}}" data-id="{{item.id}}">
+		<view class="invite" wx:if="{{item.userStudents.master==1}}" data-id="{{item.id}}">
 			<view class="item">
-				<button open-type="share" data-inviteid="{{item.invite_id}}">+</button>
+				<button open-type="share" data-inviteid="{{item.id}}">+</button>
 				<text>邀请</text>
 			</view>
 

@@ -19,6 +19,23 @@ log.list = function (token, state) {
     })
 }
 
+log.listFace = function (token, type, state) {
+    return new Promise((resolve, reject) => {
+        api.get(api.url.Children, {
+            token: token,
+            type: type,
+            state: state,
+        }, function (response) {
+            if (response.msg === 'ok') {
+                var res = response
+                resolve(res);
+            } else {
+                reject(response);
+            }
+        })
+    })
+}
+
 // 获取进出记录
 log.inOut = function (token, time, face_id, student_id, school_id, number, page, limit) {
     return new Promise((resolve, reject) => {
