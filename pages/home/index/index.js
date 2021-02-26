@@ -15,6 +15,8 @@ Page({
     },
     onLoad(opt) {
         // this.getSchools();
+        console.log(opt);
+        
         this.acceptInvite(opt.invite);
     },
     onShow() {

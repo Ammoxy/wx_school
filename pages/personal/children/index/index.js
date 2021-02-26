@@ -63,6 +63,7 @@ Page({
         console.log(e)
         let self = this,
             id = e.currentTarget.dataset.id,
+            user_student = e.currentTarget.dataset.userstuid,
             index = e.currentTarget.dataset.index;
             
         self.data.childList[index].family_state = !self.data.childList[index].family_state;
@@ -70,14 +71,22 @@ Page({
             childList: this.data.childList
         })
         if (self.data.childList[index].family_state) {
+            child.familyInvite(wx.getStorageSync('token'), user_student).then(res => {
+                self.data.childList[index].invite_id = res.data;
+                // self.data.childList[index].family = res.data;
+                // self.setData({
+                //     childList: this.data.childList
+                // });
+            })
             child.familyMember(wx.getStorageSync('token'), id).then(res => {
-                console.log(res.data);
-                
                 self.data.childList[index].family = res.data;
                 self.setData({
                     childList: this.data.childList
                 });
             })
+
+            console.log(self.data.childList);
+            
         }
         
     },
@@ -106,6 +115,7 @@ Page({
         console.log(e)
         let id = e.target.dataset.inviteid;
         console.log(222,id)
+
         if (id != 0) {
             return {
                 title: '邀请加入',

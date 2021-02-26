@@ -17,7 +17,7 @@
 		<view class="handle">
 			<view class="button" wx:if="{{item.state == 2 || item.state == 5}}">审核中</view>
 			<view class="button" wx:if="{{item.state == 4}}">审核不通过</view>
-			<view class="button" wx:if="{{item.state == 3 && item.userStudents.master==1}}" data-index="{{index}}" data-id="{{item.id}}" bindtap='inviteMember'>
+			<view class="button" wx:if="{{item.state == 3 && item.userStudents.master==1}}" data-index="{{index}}" data-id="{{item.id}}"  data-userStuId="{{item.userStudents.id}}" bindtap='inviteMember'>
 				<text>家庭成员</text>
 				<image mode='aspectFill' src="{{item.family_state == true ? '/icon/up.png' : '/icon/down.png'}}"></image>
 			</view>
@@ -27,7 +27,7 @@
 	<block wx:if="{{item.family_state}}">
 		<view class="invite" wx:if="{{item.userStudents.master==1}}" data-id="{{item.id}}">
 			<view class="item">
-				<button open-type="share" data-inviteid="{{item.id}}">+</button>
+				<button open-type="share" data-inviteid="{{item.invite_id}}" data-userStuId="{{item.userStudents.id}}">+</button>
 				<text>邀请</text>
 			</view>
 

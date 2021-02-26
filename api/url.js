@@ -18,7 +18,7 @@ const url = {
 
     // 我的孩子
     'StudentOut': '/student/out', // 临时出校
-    // 'Invite': '/invite', // 家庭成员
+    'Invite': '/invite', // 家庭成员
     'FamilyMember': '/family/member', // 家庭成员
     'Children': '/children', // 获取孩子列表
     'SearchStudents': '/students', // 搜索孩子
