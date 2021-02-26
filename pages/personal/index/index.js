@@ -25,53 +25,54 @@ Page({
   },
   onLoad: function () {
     let self = this;
-    self.setData({
-      scl_id: app.globalData.school_id
-    })
     wx.showToast({
       title: '获取数据中',
       icon: 'none'
     })
     if (wx.getStorageSync('token')) {
+      self.setData({
+        scl_id: app.globalData.school_id
+      })
       self.getSchool();
       self.getChild();
+      if (app.globalData.is_shop == 1) {
+        self.setData({
+          showShop: true
+        })
+      } else if (app.globalData.is_shop == 2) {
+        this.setData({
+          showShop: false
+        })
+      }
     }
     if (wx.getStorageSync('open_face') == 'open') {
       self.setData({
         showFace: true
       });
     }
-
-    if (app.globalData.is_shop == 1) {
-      self.setData({
-        showShop: true
-      })
-    } else if (app.globalData.is_shop == 2) {
-      this.setData({
-        showShop: false
-      })
-    }
-
   },
   onShow() {
     let self = this;
-    self.getNoticeChild();
-    self.getServiceInfo();
-    self.getPersonalInfo(); // 页面刷新获取个人信息
+
     if (wx.getStorageSync('open_face') == 'open') {
       this.setData({
         showFace: true
       });
     }
 
-    if (app.globalData.is_shop == 1) {
-      this.setData({
-        showShop: true
-      })
-    } else if (app.globalData.is_shop == 2) {
-      this.setData({
-        showShop: false
-      })
+    if (wx.getStorageSync('token')) {
+      if (app.globalData.is_shop == 1) {
+        this.setData({
+          showShop: true
+        })
+      } else if (app.globalData.is_shop == 2) {
+        this.setData({
+          showShop: false
+        })
+      }
+      self.getPersonalInfo(); // 页面刷新获取个人信息
+      self.getNoticeChild();
+      self.getServiceInfo();
     }
   },
 
