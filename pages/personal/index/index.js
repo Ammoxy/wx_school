@@ -35,24 +35,21 @@ Page({
       })
       self.getSchool();
       self.getChild();
-      if (wx.getStorageSync('open_face') == 'open') {
+      if (app.globalData.is_shop == 1) {
         self.setData({
-          showFace: true
-        });
-        if (this.data.showFace) {
-          if (app.globalData.is_shop == 1) {
-            self.setData({
-              showShop: true
-            })
-          } else if (app.globalData.is_shop == 2) {
-            this.setData({
-              showShop: false
-            })
-          }
-        }
+          showShop: true
+        })
+      } else if (app.globalData.is_shop == 2) {
+        this.setData({
+          showShop: false
+        })
       }
     }
-
+    if (wx.getStorageSync('open_face') == 'open') {
+      self.setData({
+        showFace: true
+      });
+    }
   },
   onShow() {
     let self = this;
@@ -61,19 +58,18 @@ Page({
       this.setData({
         showFace: true
       });
-      if (this.data.showFace) {
-        if (app.globalData.is_shop == 1) {
-          this.setData({
-            showShop: true
-          })
-        } else if (app.globalData.is_shop == 2) {
-          this.setData({
-            showShop: false
-          })
-        }
-      }
     }
+
     if (wx.getStorageSync('token')) {
+      if (app.globalData.is_shop == 1) {
+        this.setData({
+          showShop: true
+        })
+      } else if (app.globalData.is_shop == 2) {
+        this.setData({
+          showShop: false
+        })
+      }
       self.getPersonalInfo(); // 页面刷新获取个人信息
       self.getNoticeChild();
       self.getServiceInfo();
@@ -359,11 +355,9 @@ Page({
   // 跳转商城
   toShop() {
     if (wx.getStorageSync('token')) {
-      if (this.data.showFace) {
-        wx.navigateTo({
-          url: '/pages/personal/shop/shop?school_id=' + this.data.scl_id,
-        })
-      }
+      wx.navigateTo({
+        url: '/pages/personal/shop/shop?school_id=' + this.data.scl_id,
+      })
     } else {
       wx.showToast({
         title: '请先登录',
