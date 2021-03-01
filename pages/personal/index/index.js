@@ -35,21 +35,24 @@ Page({
       })
       self.getSchool();
       self.getChild();
-      if (app.globalData.is_shop == 1) {
+      if (wx.getStorageSync('open_face') == 'open') {
         self.setData({
-          showShop: true
-        })
-      } else if (app.globalData.is_shop == 2) {
-        this.setData({
-          showShop: false
-        })
+          showFace: true
+        });
+        if (this.data.showFace) {
+          if (app.globalData.is_shop == 1) {
+            self.setData({
+              showShop: true
+            })
+          } else if (app.globalData.is_shop == 2) {
+            this.setData({
+              showShop: false
+            })
+          }
+        }
       }
     }
-    if (wx.getStorageSync('open_face') == 'open') {
-      self.setData({
-        showFace: true
-      });
-    }
+
   },
   onShow() {
     let self = this;
@@ -58,18 +61,19 @@ Page({
       this.setData({
         showFace: true
       });
-    }
-
-    if (wx.getStorageSync('token')) {
-      if (app.globalData.is_shop == 1) {
-        this.setData({
-          showShop: true
-        })
-      } else if (app.globalData.is_shop == 2) {
-        this.setData({
-          showShop: false
-        })
+      if (this.data.showFace) {
+        if (app.globalData.is_shop == 1) {
+          this.setData({
+            showShop: true
+          })
+        } else if (app.globalData.is_shop == 2) {
+          this.setData({
+            showShop: false
+          })
+        }
       }
+    }
+    if (wx.getStorageSync('token')) {
       self.getPersonalInfo(); // 页面刷新获取个人信息
       self.getNoticeChild();
       self.getServiceInfo();
@@ -355,9 +359,11 @@ Page({
   // 跳转商城
   toShop() {
     if (wx.getStorageSync('token')) {
-      wx.navigateTo({
-        url: '/pages/personal/shop/shop?school_id=' + this.data.scl_id,
-      })
+      if (this.data.showFace) {
+        wx.navigateTo({
+          url: '/pages/personal/shop/shop?school_id=' + this.data.scl_id,
+        })
+      }
     } else {
       wx.showToast({
         title: '请先登录',

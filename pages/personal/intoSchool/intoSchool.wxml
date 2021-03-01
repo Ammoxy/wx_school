@@ -3,6 +3,7 @@
 	<view class="table">
 		<view class="th">
 			<view class="tr">姓名</view>
+			<view class="tr">当前状态</view>
 			<view class="tr">只允许进校</view>
 			<view class="tr">自由进出校</view>
 		</view>
@@ -10,6 +11,8 @@
 			<block wx:for="{{childList}}" wx:key="index">
 				<view class="content">
 					<view class="tr">{{item.name}}</view>
+					<view class="tr" style="color: red" wx:if="{{item.onlyIn}}">不能刷脸出校</view>
+					<view class="tr" wx:else>自由刷脸出校</view>
 					<view class="tr">
 						<switch class="switch" color="#2a9f93" checked='{{item.onlyIn}}' data-state="{{item.state}}" data-id="{{item.id}}" bindchange="switchChange"></switch>
 					</view>
