@@ -2,7 +2,7 @@
 App({
   onShow() {
     let global = require('./model/global');
-    global.switch('1.0.46').then(res => {
+    global.switch('1.0.47').then(res => {
       console.log(res);
       wx.setStorageSync('open_face', res.data.config_value)
     })
@@ -42,6 +42,7 @@ App({
   globalData: {
     userInfo: null,
     school_id: null,
-    is_shop: null
+    is_shop: null,
+    user_id: null
   }
 })

@@ -1,5 +1,6 @@
  let buy = require('../../../model/my/buy');
-
+ var app = getApp()
+ let child = require('../../../model/my/child');
 
  Page({
      data: {
@@ -12,14 +13,30 @@
          goods_price: '', // 商品价格
          goods_id: '', // 商品id
          user_id: '', // 用户id
-         student_id: '' // 学生id
+         student_id: '', // 学生id,
+         isBind: false,
+         is_check_pay: '',
+         infoData: null
      },
      onLoad(options) {
-         this.getChild();
          this.setData({
-             user_id: options.user_id
+             user_id: app.globalData.user_id
          });
+         
+         if (options.info) {
+             console.log(JSON.parse(options.info));
 
+             this.setData({
+                 student_id: JSON.parse(options.info).id,
+                 school_id: JSON.parse(options.info).school_id,
+                 isBind: true,
+                 is_check_pay: JSON.parse(options.info).schoolData.is_check_pay,
+                 infoData: JSON.parse(options.info)
+             })
+             this.getGoods(this.data.school_id);
+         } else {
+             this.getChild();
+         }
      },
      onShow() {},
 
@@ -60,7 +77,7 @@
                  school_id: res.data[0].school_id,
                  student_id: res.data[0].id
              })
-             this.getGoods();
+             this.getGoods(self.data.school_id);
              this.getWaitPay();
 
          })
@@ -71,19 +88,19 @@
          this.setData({
              child: this.data.childList[e.detail.value].name,
              school_id: this.data.childList[e.detail.value].school_id,
-             student_id: this.data.childList[e.detail.value].id
+             student_id: this.data.childList[e.detail.value].id,
          });
-         this.getGoods();
+         this.getGoods(this.data.school_id);
      },
 
      // 获取商品列表
-     getGoods() {
+     getGoods(val) {
          let self = this;
          wx.showToast({
              title: '获取数据中',
              icon: 'none'
          })
-         buy.goods(wx.getStorageSync('token'), self.data.school_id).then(res => {
+         buy.goods(wx.getStorageSync('token'), val).then(res => {
              self.setData({
                  goodsList: res.data.data,
                  goodsName: res.data.data[0].title,
@@ -124,11 +141,28 @@
                                      icon: "none",
                                      title: '购买成功'
                                  });
-                                 setTimeout(function () {
-                                     wx.switchTab({
-                                         url: '/pages/personal/index/index',
-                                     })
-                                 }, 1500)
+                                 if (self.data.is_check_pay == 1) {
+                                    //  绑定收费
+                                     if (self.data.infoData.face_id == null) {
+                                        child.bindChild(wx.getStorageSync('token'), self.data.infoData.number, self.data.infoData.remark, self.data.infoData.cover, self.data.infoData.face_image, 1, self.data.infoData.id).then(res => {
+                                            wx.switchTab({
+                                                url: '/pages/personal/index/index',
+                                            })
+                                       }).catch(err => {})
+                                     } else {
+                                        wx.switchTab({
+                                            url: '/pages/personal/index/index',
+                                        })
+                                     }
+                                 } else {
+                                     setTimeout(function () {
+                                         wx.switchTab({
+                                             url: '/pages/personal/index/index',
+                                         })
+                                     }, 1500)
+
+                                 }
+
                              },
                              fail() {
                                  buy.cancelOrder(wx.getStorageSync('token'), order_id).then(res => {
@@ -150,7 +184,7 @@
      // 账单明细
      toBill() {
          wx.navigateTo({
-             url: '../buy/bill/bill?school_id='+ this.data.school_id
+             url: '../buy/bill/bill?school_id=' + this.data.school_id
          })
      }
  })

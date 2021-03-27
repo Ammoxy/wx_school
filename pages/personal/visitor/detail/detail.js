@@ -289,7 +289,6 @@ Page({
             })
         }
         if (!self.data.name) { // 未输入姓名
-            debugger
             wx.showToast({
                 title: '请输入真实姓名',
                 icon: 'loading',

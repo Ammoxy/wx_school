@@ -27,6 +27,7 @@ Page({
             flash: 'off'
         },
         showFace: false, // 显示上传人脸的开关
+        is_check_pay: null
     },
 
     onLoad(opt) {
@@ -62,10 +63,24 @@ Page({
             icon: 'none'
         })
         let self = this;
+        // wx.request({
+        //     url: 'http://192.168.0.110/api/student',
+        //     data: {
+        //         token: wx.getStorageSync('token'),
+        //         id: self.data.id
+        //     },
+        //     success(res) {
+        //         console.log(111, res)
+        //         self.setData({
+        //             info: res.data.data,
+        //             is_check_pay: res.data.data.school.is_check_pay
+        //         })
+        //     }
+        // })
         child.childInfo(wx.getStorageSync('token'), self.data.id).then(res => {
             self.setData({
                 info: res.data,
-                // onlyIn: res.data.state == 1 ? false : res.data.only_in == 1 ? true : false
+                is_check_pay: res.data.schoolData.is_check_pay
             })
         })
     },
@@ -135,26 +150,9 @@ Page({
 
     },
 
-    // switchChange(e) {
-    //     this.setData({
-    //         onlyIn: e.detail.value
-    //     })
-    //     // let only = e.detail.value == true ? 1 : 2;
-    //     // child.only(wx.getStorageSync('token'), this.data.id, only).then(res => {
-    //     //     wx.showToast({
-    //     //         title: '设置成功',
-    //     //         icon: 'none'
-    //     //     });
-    //     // })
-
-    // },
-
     // 备注
     remarkFocus(e) {
-        console.log(e)
         this.data.info.remark = e.detail.value;
-        console.log(this.data.info.remark)
-
         this.setData({
             info: this.data.info
         })
@@ -165,7 +163,6 @@ Page({
         let self = this;
         self.setData({
             info: self.data.info,
-            // onlyIn: self.data.onlyIn
         });
         if (self.data.info.state != 2) {
             wx.requestSubscribeMessage({
@@ -173,7 +170,7 @@ Page({
             });
         }
         setTimeout(function () {
-            console.log(self.data.info)
+            console.log(111111, self.data.info)
             if (!self.data.info.face_image) {
                 wx.showToast({
                     title: '请上传孩子照片',
@@ -185,22 +182,49 @@ Page({
             // 只允许进校开关 1开 2关
             // let only_in = self.data.onlyIn == true ? 1 : 2
             // 绑定孩子请求
-            child.bindChild(wx.getStorageSync('token'), self.data.info.number, self.data.info.remark, self.data.info.cover, self.data.info.face_image, 1, self.data.info.id).then(res => {
-                wx.showToast({
-                    title: '提交成功，请通知班主任审核',
-                    icon: 'none',
-                    duration: 3000,
-                    success() {
-                        self.data.info.state = 2;
-                        self.setData({
-                            info: self.data.info
+            if (self.data.is_check_pay == 2) {
+                console.log('未开启');
+                child.bindChild(wx.getStorageSync('token'), self.data.info.number, self.data.info.remark, self.data.info.cover, self.data.info.face_image, 1, self.data.info.id).then(res => {
+                    wx.showToast({
+                        title: '提交成功，请通知班主任审核',
+                        icon: 'none',
+                        duration: 3000,
+                        success() {
+                            self.data.info.state = 2;
+                            self.setData({
+                                info: self.data.info
+                            });
+                            setTimeout(function () {
+                                self.checkAuth();
+                            }, 4000);
+                        }
+                    });
+                }).catch(err => {})
+            } else {
+                if (self.data.info.face_id == null && self.data.info.state == 1) {
+                    wx.navigateTo({
+                        url: '../../buy/buy?info=' + JSON.stringify(self.data.info)
+                    })
+                } else {
+                    child.bindChild(wx.getStorageSync('token'), self.data.info.number, self.data.info.remark, self.data.info.cover, self.data.info.face_image, 1, self.data.info.id).then(res => {
+                        wx.showToast({
+                            title: '提交成功，请通知班主任审核',
+                            icon: 'none',
+                            duration: 3000,
+                            success() {
+                                self.data.info.state = 2;
+                                self.setData({
+                                    info: self.data.info
+                                });
+                                setTimeout(function () {
+                                    self.checkAuth();
+                                }, 4000);
+                            }
                         });
-                        setTimeout(function () {
-                            self.checkAuth();
-                        }, 4000);
-                    }
-                });
-            }).catch(err => {})
+                    }).catch(err => {})
+                }
+            }
+
         }, 3000)
     },
 

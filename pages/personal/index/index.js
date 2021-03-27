@@ -82,6 +82,7 @@ Page({
     user.info(wx.getStorageSync('token')).then(res => {
       console.log(res)
       app.globalData.userInfo = res.data;
+      app.globalData.user_id = res.data.user_id;
       self.setData({
         userInfo: res.data,
         class_id: res.data.class_id

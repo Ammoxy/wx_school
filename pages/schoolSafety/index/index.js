@@ -167,7 +167,6 @@ Page({
                 childList: this.data.childList
             });
         }).catch(err => {
-            debugger
         })
     },
 
