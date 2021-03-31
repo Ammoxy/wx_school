@@ -18,7 +18,8 @@
          is_check_pay: '',
          infoData: null,
          grade_type: null,
-         total: 0
+         total: 0,
+         six_time: 0
      },
      onLoad(options) {
          this.setData({
@@ -128,10 +129,12 @@
                  total: res.data.total
              })
              if (res.data.total > 0) {
+                 var num = res.data.data[0].six_time / 86400
                  self.setData({
                      goodsName: res.data.data[0].title,
                      goods_id: res.data.data[0].id,
                      goods_price: res.data.data[0].price,
+                     six_time: num.toFixed(0)
                  })
              } else {
                  self.setData({
@@ -144,12 +147,14 @@
      },
      goodsChange(e) {
          let self = this;
+         var num = self.data.goodsList[e.detail.value].six_time / 86400
          self.setData({
              goodsList: self.data.goodsList,
              goods_index: e.detail.value,
              goodsName: self.data.goodsList[e.detail.value].title,
              goods_id: self.data.goodsList[e.detail.value].id,
-             goods_price: self.data.goodsList[e.detail.value].price
+             goods_price: self.data.goodsList[e.detail.value].price,
+             six_time: num.toFixed(0)
          });
      },
 

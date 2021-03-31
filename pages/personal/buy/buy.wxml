@@ -20,7 +20,8 @@
 	<view class="card" wx:if="{{total > 0}}">
 		<view class="name">{{goodsList[goods_index].title}}</view>
 		<view class="price">￥{{goodsList[goods_index].price}}</view>
-		<view class="useday">商品有效期：{{goodsList[goods_index].time}}天</view>
+		<view class="useday" wx:if="{{goodsList[goods_index].is_six == 2}}">商品有效期：{{goodsList[goods_index].time}}天</view>
+		<view class="useday" wx:else>商品有效期：{{six_time}}天</view>
 		<view class="detail">
 			<text style="width: 150rpx">包含的服务:</text>
 			<view>
