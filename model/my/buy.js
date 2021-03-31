@@ -20,12 +20,9 @@ buy.list = function (token, mode) {
 }
 
 // 获取商品列表
-buy.goods = function (token, school) {
+buy.goods = function (data) {
     return new Promise((resolve, reject) => {
-        api.get(api.url.Products, {
-            token: token,
-            school: school
-        }, function (response) {
+        api.get(api.url.Products, data, function (response) {
             if (response.msg === 'ok') {
                 var res = response
                 resolve(res);

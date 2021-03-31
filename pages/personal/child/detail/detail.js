@@ -63,20 +63,6 @@ Page({
             icon: 'none'
         })
         let self = this;
-        // wx.request({
-        //     url: 'http://192.168.0.110/api/student',
-        //     data: {
-        //         token: wx.getStorageSync('token'),
-        //         id: self.data.id
-        //     },
-        //     success(res) {
-        //         console.log(111, res)
-        //         self.setData({
-        //             info: res.data.data,
-        //             is_check_pay: res.data.data.school.is_check_pay
-        //         })
-        //     }
-        // })
         child.childInfo(wx.getStorageSync('token'), self.data.id).then(res => {
             self.setData({
                 info: res.data,

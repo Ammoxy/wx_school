@@ -17,7 +17,7 @@
 </view>
 
 <view class="goods">
-	<view class="card">
+	<view class="card" wx:if="{{total > 0}}">
 		<view class="name">{{goodsList[goods_index].title}}</view>
 		<view class="price">￥{{goodsList[goods_index].price}}</view>
 		<view class="useday">商品有效期：{{goodsList[goods_index].time}}天</view>
@@ -30,12 +30,15 @@
 			</view>
 		</view>
 	</view>
+	<view class="card" wx:else>
+		<view class="name">暂无服务</view>
+	</view>
 </view>
 
 
 
 
-<view class="pay">
+<view class="pay" wx:if="{{total > 0}}">
 	<button bindtap="pay">立即支付</button>
 	<text>开通服务，表示您同意相关服务协议。</text>
 </view>
